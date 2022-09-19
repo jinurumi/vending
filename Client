@@ -1,0 +1,38 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Client {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+    public Integer insertCoin(Integer coin, BufferedReader reader){
+        try {
+            System.out.println("동전을 투입하세요.");
+            String answer = reader.readLine();
+            return Integer.parseInt(answer);    // 입력받은 동전을 리턴한다.
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+//
+
+
+    public Integer pay(Integer coin, Integer[] itemAmount, Integer[] price, Integer selectedItem){
+        if(itemAmount[selectedItem] <= 0){
+            System.out.println("선택하신 물건의 수량이 부족합니다.");
+            return coin;
+        }
+        if(price[selectedItem] > coin){
+            System.out.println("투입하신 요금이 부족합니다.");
+            return coin;
+        }
+        itemAmount[selectedItem] -= 1;  // 수량 차감
+        coin -= price[selectedItem];    // 요금 차감
+        return coin;
+    }
+
+
+    //
+
+
+}
