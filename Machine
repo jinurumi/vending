@@ -1,0 +1,38 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Machine {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    public static boolean userWantPlay (BufferedReader reader){
+        try {
+            System.out.println("주문하시겠습니까?");
+            String answer = reader.readLine();
+            return answer.equals("n");  // 거절이면 트루를 리턴한다.
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //
+    public static Integer selectItem (BufferedReader reader){
+        String answer = null;
+        try {
+            System.out.println("원하시는 물건을 선택하세요.");
+            System.out.println("1.콜라 2.사이다 3.사과주스 4.쿠키 5.맥주");
+            answer = reader.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return Integer.parseInt(answer) - 1;        // 배열은 0번부터 사용함으로 1을 빼주고 리턴한다.
+
+    }
+    //
+
+    public static Integer backCoin (Integer payResult){
+        System.out.printf("잔액 %d원을 반환합니다.%n감사합니다.%n", payResult);
+        return 0;   // 투입된 요금을 0 으로 초기화
+    }
+
+
+}
