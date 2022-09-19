@@ -1,0 +1,30 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+public class VendingMachine {
+    public static void main(String[] args) {
+        Integer[] itemAmount = {5, 10, 20, 15, 7};    // 각 아이템의 재고 선언
+        Integer[] price = {2000, 100, 500, 3500, 1000};     // 각 아이템의 가격 선언
+        // 사용자에게 입력받을 금액
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));   // 사용자 입력기
+        Client cl = new Client();
+        Machine mc = new Machine();
+
+        //코인 지정
+        Integer coin=null;
+
+
+        if (mc.userWantPlay(reader)) ;
+            coin = cl.insertCoin(coin, reader);
+            Integer selectedItem = mc.selectItem(reader);
+            Integer payResult = cl.pay(coin, itemAmount, price, selectedItem);
+            coin = mc.backCoin(payResult);
+
+    }
+}
+
+
+
